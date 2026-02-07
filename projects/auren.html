@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auren — Jyoush</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+            text-decoration: none;
+        }
+        .back-link:hover {
+            color: var(--text);
+        }
+        .project-hero {
+            margin-bottom: 3rem;
+        }
+        .project-tagline {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin: 1rem 0;
+            font-style: italic;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: var(--hover);
+            border-radius: 4px;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.25rem;
+        }
+        .section-title {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-tertiary);
+            margin: 2.5rem 0 1rem;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .tech-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            padding: 0.375rem 0.75rem;
+            background: var(--hover);
+            border-radius: 3px;
+            color: var(--text-secondary);
+        }
+        .timeline-detail {
+            border-left: 1px solid var(--border);
+            padding-left: 1.5rem;
+            margin-left: 0.5rem;
+        }
+        .timeline-item-detail {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        .timeline-item-detail::before {
+            content: '';
+            position: absolute;
+            left: -1.625rem;
+            top: 0.5rem;
+            width: 6px;
+            height: 6px;
+            background: var(--text-tertiary);
+            border-radius: 50%;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--accent);
+            color: var(--bg);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+        .cta-button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html#projects" class="back-link">← Back to projects</a>
+        
+        <div class="project-hero">
+            <div class="marker">◆</div>
+            <h1>Auren</h1>
+            <p class="project-tagline">"Make it here. Share it everywhere."</p>
+            
+            <p class="intro">
+                A custom product creation platform aimed at democratizing merchandise creation. 
+                It bridges the gap between custom product design and e-commerce fulfillment — 
+                competitive pricing, premium quality, delivered to your door.
+            </p>
+
+            <p class="intro-secondary">
+                The project started as an experiment in building a full-stack e-commerce solution 
+                and evolved into a full platform for creators to design, customize, and sell products 
+                without inventory risks.
+            </p>
+            
+            <a href="https://auren.co" target="_blank" class="cta-button">Visit auren.co →</a>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat">
+                <div class="stat-value">Live</div>
+                <div class="stat-label">Status</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">E-com</div>
+                <div class="stat-label">Category</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">B2C</div>
+                <div class="stat-label">Model</div>
+            </div>
+        </div>
+
+        <div class="section">            <div class="section-title">What It Does</div>
+            <p style="color: var(--text-secondary); line-height: 1.7;">
+                Auren allows users to create custom products with an easy-to-use interface. 
+                The platform handles design tools, order processing, and fulfillment logistics — 
+                taking creators from idea to delivered product without touching inventory or dealing 
+                with complex supply chains.
+            </p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Tech Stack</div>
+            <div class="tech-stack">
+                <span class="tech-tag">Web Platform</span>
+                <span class="tech-tag">E-commerce</span>
+                <span class="tech-tag">Custom Products</span>
+                <span class="tech-tag">Order Fulfillment</span>
+                <span class="tech-tag">User Dashboard</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Development Journey</div>
+            <div class="timeline-detail">
+                <div class="timeline-item-detail">
+                    <h4 style="font-weight: 500; margin-bottom: 0.5rem;">Initial Concept</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.9375rem;">
+                        Identified a gap between creators wanting custom merch and the complexity 
+                        of setting up print-on-demand or managing inventory. Started building a 
+                        streamlined solution.
+                    </p>
+                </div>
+                <div class="timeline-item-detail">
+                    <h4 style="font-weight: 500; margin-bottom: 0.5rem;">MVP Launch</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.9375rem;">
+                        Built core product customization features, integrated order management, 
+                        and launched the platform at auren.co
+                    </p>
+                </div>
+                <div class="timeline-item-detail">
+                    <h4 style="font-weight: 500; margin-bottom: 0.5rem;">Open Source</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.9375rem;">
+                        Released the project开源, allowing others to learn from and fork the codebase. 
+                        Was forked by <a href="https://github.com/EddieASC21" target="_blank">@EddieASC21</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Links</div>
+            <div class="project-links" style="margin-top: 1rem;">
+                <a href="https://auren.co" target="_blank" class="link">Live Site →</a>
+            </div>
+        </div>
+
+        <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+            <div class="marker">◆</div>
+            <p style="font-size: 0.8125rem; color: var(--text-tertiary);">
+                Part of <a href="../index.html" style="color: var(--text-secondary);">jyoush's project collection</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
