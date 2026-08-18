@@ -124,21 +124,51 @@ It's just plain HTML, CSS, and vanilla JS using the Firefox WebExtension storage
       title: 'Auren',
       year: '2025',
       description:
-        'Generative apparel design platform built for a stealth startup alongside a Cornell grad.',
+        'Generative apparel design platform built for a stealth startup alongside a Cornell graduate, featuring conversational multi-turn AI mockups and an interactive garment canvas.',
       details:
         `## the project
-I teamed up with a Cornell graduate to build the customer-facing app and AI pipeline for Auren, a startup where people could design and order custom apparel through a live chat assistant.
+I teamed up with a Cornell graduate to architect the web app and AI generation pipeline for Auren, a custom apparel platform where customers can design merch through conversational AI or an interactive canvas editor, then take it straight through to checkout.
 
-## how the generation pipeline worked
-We wired up Gemini Flash to turn vague customer descriptions into concrete design specs (aspect ratio, print coordinates, color themes). That passed into an image gen endpoint, and we used Sharp in Node to strip backgrounds and clean edges before rendering the graphic onto 3D mockup previews.
+## two-stage ai pipeline
+Instead of firing one big prompt at an image model and praying for good output, we broke the AI system into two distinct stages:
 
-## frontend & backend
-Built with Next.js and TypeScript. We used Dexie for client-side caching so draft designs loaded instantly, WorkOS for enterprise SSO (Google, Apple, Microsoft), Google Cloud Storage for high-res assets, Firestore for orders, and Stripe for payments.`,
-      tags: ['Next.js', 'TypeScript', 'AI', 'Stripe'],
+First, Gemini Flash acts as the conversationalist. It interprets natural-language user requests, maintains multi-turn context (remembering whether the user is editing the front or back of a garment), enforces catalog categorization, and outputs a strict JSON schema with a normalized visualPrompt for the artist model.
+
+Second, the visualPrompt is passed to Gemini 3 Pro (image preview) for photorealistic apparel mockups, or OpenAI's image model (gpt-image-1.5) for vector logos and badges. The system tracks active sides and automatically carries forward uploaded brand logos and design elements across conversation turns.
+
+## custom matting & alpha isolation
+Neither Gemini nor standard generative models produce true transparent backgrounds for graphics. To extract clean logos and graphics for the interactive editor without paying for third-party segmentation APIs, I wrote a custom background removal pipeline in Node using Sharp.
+
+The artist model is prompted to render assets against a calibrated neon green canvas (#00FF00). We process the raw buffer in Sharp using pixel-threshold gating and 4-way connected-component labeling (flood fill) to identify the largest foreground island and zero out the alpha channel everywhere else. As a classical fallback, we also built a linear-space difference matting pass (comparing white vs. black backgrounds) to preserve delicate edge antialiasing.
+
+## frontend canvas & client-side caching
+The storefront is built in Next.js 14 and React 18. Alongside the AI chat, we built a full drag-and-drop canvas designer with rotatable text, logo uploads, and front/back masking overlays. Everything on the canvas is stored in normalized 0–1 coordinates so designs remain perfectly resolution-independent across mobile and desktop viewports.
+
+To prevent hitting localStorage's 5MB cap with high-res design snapshots, we wired up Dexie.js (IndexedDB) with a versioned schema. Dexie stores local compressed thumbnails for instantaneous Largest Contentful Paint (LCP) while pointing directly to high-res GCS URLs, so drafts restore immediately without network lag.
+
+## cloud infrastructure & security
+To keep cold starts near ~200ms on the storefront while supporting heavy image processing, we split the monorepo into two separate Google Cloud Run microservices. The backend handles Sharp processing, GCS asset storage, and Firestore for persistent design sessions, multi-turn conversation logs, and order states. We also built defense-in-depth security with 6-layer anti-spam filtering (reCAPTCHA v3, honeypot traps, timing checks, and Upstash Redis rate limiting) plus strict server-side pricing recalculation to prevent client-side cart tampering.`,
+      tags: ['Next.js', 'TypeScript', 'Gemini Pro', 'GCP', 'Sharp', 'IndexedDB'],
       href: 'https://github.com/jyoush/auren',
-      linkLabel: 'github',
-      image:
-        'https://raw.githubusercontent.com/jyoush/auren/main/packages/frontend/public/Screenshot%202025-10-27%20150915.png',
+      links: [
+        { label: 'github', href: 'https://github.com/jyoush/auren' },
+        { label: 'auren.co', href: 'https://auren.co' },
+      ],
+      websiteImage: '/auren-website.png',
+      image: '/auren-logo.png',
+      gallery: [
+        {
+          src: '/auren-chat.png',
+          alt: 'Auren conversational AI design chat',
+          caption: 'conversational mockup studio',
+        },
+        {
+          src: '/auren-editor.png',
+          alt: 'Auren interactive canvas garment designer',
+          caption: 'drag & drop canvas editor',
+        },
+      ],
+      galleryTextBreakAfter: 1,
     },
   ],
   done: [
