@@ -154,21 +154,7 @@ To keep cold starts near ~200ms on the storefront while supporting heavy image p
         { label: 'github', href: 'https://github.com/jyoush/auren' },
         { label: 'auren.co', href: 'https://auren.co' },
       ],
-      websiteImage: '/auren-website.png',
       image: '/auren-logo.png',
-      gallery: [
-        {
-          src: '/auren-chat.png',
-          alt: 'Auren conversational AI design chat',
-          caption: 'conversational mockup studio',
-        },
-        {
-          src: '/auren-editor.png',
-          alt: 'Auren interactive canvas garment designer',
-          caption: 'drag & drop canvas editor',
-        },
-      ],
-      galleryTextBreakAfter: 1,
     },
   ],
   done: [
